@@ -142,7 +142,11 @@ var FR={
 'Orders are by request while the online store is being prepared.':'Les commandes se font sur demande pendant la préparation de la boutique en ligne.',
 'Private List / Contact':'Liste privée / Contact','Why shop Mai Deluxe':'Pourquoi choisir Mai Deluxe',
 'Search is not connected yet.':'La recherche n’est pas encore connectée.','Customer accounts are not connected yet.':'Les comptes clients ne sont pas encore connectés.',
-'The wishlist is not connected yet.':'La liste d’envies n’est pas encore connectée.','The shopping bag opens once the online store is connected.':'Le panier s’ouvrira une fois la boutique en ligne connectée.'
+'The wishlist is not connected yet.':'La liste d’envies n’est pas encore connectée.','The shopping bag opens once the online store is connected.':'Le panier s’ouvrira une fois la boutique en ligne connectée.',
+'I agree to receive emails from Mai Deluxe about new arrivals, travel updates and offers. I can unsubscribe at any time.':'J’accepte de recevoir des e-mails de Mai Deluxe sur les nouveautés, les voyages et les offres. Je peux me désinscrire à tout moment.',
+'Please tick the box to agree to receive emails.':'Veuillez cocher la case pour accepter de recevoir des e-mails.',
+'Shop':'Boutique',
+'Orders are placed by request. Mai confirms price, availability and delivery with you before anything is paid.':'Les commandes se font sur demande. Mai confirme avec vous le prix, la disponibilité et la livraison avant tout paiement.'
 };
 var RULES=[
  [/^(.+) — open full screen and zoom$/,function(m){return tr(m[1])+' — ouvrir en plein écran et zoomer'}],
