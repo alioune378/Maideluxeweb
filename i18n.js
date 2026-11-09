@@ -132,6 +132,7 @@ var FR={
 'Sea blue Getzner Phantom jacquard fabric, softly folded':'Tissu jacquard Getzner Phantom bleu mer, délicatement plié',
 'Previous':'Précédent','Next':'Suivant','Product photo':'Photo du produit','Photo':'Photo',
 'Mai Deluxe – homepage preview':'Mai Deluxe – aperçu de la page d’accueil',
+'Mai Deluxe — Shop the World with Mai':'Mai Deluxe — Parcourez le monde avec Mai',
 // responsive design integration
 'Shop the World':'Parcourez le monde','with Mai Deluxe':'avec Mai Deluxe',
 'Exceptional Gold. Luxury Fabrics.':'Or d’exception. Tissus de luxe.','Exclusive Finds. Personally Selected.':'Trouvailles exclusives. Choisies personnellement.',
