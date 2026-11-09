@@ -147,6 +147,7 @@ var FR={
 'I agree to receive emails from Mai Deluxe about new arrivals, travel updates and offers. I can unsubscribe at any time.':'J’accepte de recevoir des e-mails de Mai Deluxe sur les nouveautés, les voyages et les offres. Je peux me désinscrire à tout moment.',
 'Please tick the box to agree to receive emails.':'Veuillez cocher la case pour accepter de recevoir des e-mails.',
 'Shop':'Boutique',
+'Shop All Products':'Tous nos produits','Show More':'Voir plus','Filter products':'Filtrer les produits','Jewelry':'Bijoux',
 'Rose Filigree Bridal Necklace & Earrings':'Parure de mariée filigrane aux roses',
 'Floral Bib Necklace & Earrings':'Collier plastron floral et boucles d’oreilles',
 'Fan Filigree Necklace & Earrings':'Collier éventail en filigrane et boucles d’oreilles',
@@ -281,6 +282,7 @@ var RULES=[
  [/^Show (.+) \((\d+) of (\d+)\)$/,function(m){return 'Afficher '+tr(m[1])+' ('+m[2]+' sur '+m[3]+')'}],
  [/^(.+) — (.+) close-up$/,function(m){return tr(m[1])+' — gros plan'+NB+': '+tr(m[2])}],
  [/^Weight ([\d.,]+ g)(?: · Size ([\d.]+))?$/,function(m){return 'Poids '+m[1]+(m[2]?' · Taille '+m[2]:'')}],
+ [/^(All|Jewelry|Fabrics) \((\d+)\)$/,function(m){return ({All:'Tout',Jewelry:'Bijoux',Fabrics:'Tissus'})[m[1]]+' ('+m[2]+')'}],
  [/^Video: (.+)$/,function(m){return 'Vidéo'+NB+': '+tr(m[1])}],
  [/^Bag, (\d+) items?$/,function(m){return 'Panier, '+m[1]+(m[1]==='1'?' article':' articles')}]
 ];
