@@ -146,6 +146,7 @@ var FR={
 'I agree to receive emails from Mai Deluxe about new arrivals, travel updates and offers. I can unsubscribe at any time.':'J’accepte de recevoir des e-mails de Mai Deluxe sur les nouveautés, les voyages et les offres. Je peux me désinscrire à tout moment.',
 'Please tick the box to agree to receive emails.':'Veuillez cocher la case pour accepter de recevoir des e-mails.',
 'Shop':'Boutique',
+'Website by':'Site web par',
 'Orders are placed by request. Mai confirms price, availability and delivery with you before anything is paid.':'Les commandes se font sur demande. Mai confirme avec vous le prix, la disponibilité et la livraison avant tout paiement.'
 };
 var RULES=[
