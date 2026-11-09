@@ -426,6 +426,12 @@ body{font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-text-size-ad
 @media(max-width:400px){.two{grid-template-columns:1fr;gap:0}}
 .info .eb{font-size:12.5px;color:var(--gold-ink);font-weight:600;letter-spacing:.14em}.av,.draft,.note2{font-size:14.5px}.fx div{font-size:15.5px}
 
+
+/* language switch (EN / FR) */
+.rh-util .in{padding:0;position:relative}
+.lang{flex:none;width:44px;height:44px;display:grid;place-items:center;padding:0;background:none;border:0;color:var(--gold-hi);font:600 13px/1 var(--sans);letter-spacing:.08em;cursor:pointer}
+.lang:hover{text-decoration:underline;text-underline-offset:3px}
+@media(min-width:960px){.lang{position:absolute;right:12px;top:0;width:auto;min-width:44px;padding:0 10px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;scroll-behavior:auto!important}.cd:hover img{transform:none}}
 .ab{width:44px;height:44px}
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></head><body>
@@ -439,7 +445,7 @@ body{font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-text-size-ad
 <symbol id="r" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="3"/><rect x="3" y="14" width="18" height="6" rx="3"/></symbol>
 <symbol id="p" viewBox="0 0 24 24"><path d="M21 3L3 11l7 2 2 7 3-6 6-11zM10 13l11-10"/></symbol>
 </defs></svg>
-<div class="rh-util" role="region" aria-label="Announcements"><div class="in"><ul class="ann" id="ann"><li class="on"><a href="#travels">Discover the World with Mai</a></li><li><a href="#arrivals">New Arrivals · Discover the Collection</a></li><li><a href="#plist">Join the Mai Deluxe Private List</a></li></ul><button class="ann-p" type="button" aria-label="Pause announcements" aria-pressed="false"><svg aria-hidden="true"><use href="#i-pause"/></svg></button></div></div>
+<div class="rh-util" role="region" aria-label="Announcements"><div class="in"><button class="lang" type="button" translate="no" lang="fr" aria-label="Afficher le site en français">FR</button><ul class="ann" id="ann"><li class="on"><a href="#travels">Discover the World with Mai</a></li><li><a href="#arrivals">New Arrivals · Discover the Collection</a></li><li><a href="#plist">Join the Mai Deluxe Private List</a></li></ul><button class="ann-p" type="button" aria-label="Pause announcements" aria-pressed="false"><svg aria-hidden="true"><use href="#i-pause"/></svg></button></div></div>
 <header class="rh"><div class="bar">
 <div class="l"><button aria-label="Menu" aria-expanded="false" onclick="var d=document.getElementById('dr');d.classList.toggle('open');this.setAttribute('aria-expanded',d.classList.contains('open'))"><svg><use href="#m"/></svg></button><a class="srch" href="#" aria-label="Search"><svg><use href="#s"/></svg></a></div>
 <a class="lg" href="#" aria-label="Mai Deluxe home"><img class="lf" src="assets/img-5b020a8220.png" alt="Mai Deluxe — Gold, Fabrics, Travel, Exclusive Finds"><img class="ls" src="assets/img-1edcf35938.png" alt="Mai Deluxe"></a>
@@ -635,4 +641,4 @@ if('IntersectionObserver' in window){
  new IntersectionObserver(function(es){var e=es[0];if(e.intersectionRatio>=.35){if(user===true||(user===null&&!rm&&!sd)){load();var q=v.play();if(q&&q.catch)q.catch(function(){})}}else if(!v.paused)v.pause()},{threshold:[0,.35]}).observe(v)}}
 /* Private List: honest preview message until an email service is connected */
 var f=document.getElementById('plf');if(f)f.addEventListener('submit',function(e){e.preventDefault();var m=document.getElementById('plm'),em=f.querySelector('input[type=email]');m.hidden=false;m.textContent=em.value&&em.checkValidity()?'Preview only: the Private List is not connected to an email service yet, so nothing was saved.':'Please enter a valid email address.'});
-})()</script></body></html>
+})()</script><script src="i18n.js"></script></body></html>
