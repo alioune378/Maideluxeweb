@@ -131,7 +131,18 @@ var FR={
 'Ornate gold filigree necklace, earrings, bracelet and ring on a cream bust':'Collier, boucles d’oreilles, bracelet et bague en or filigrané sur un buste crème',
 'Sea blue Getzner Phantom jacquard fabric, softly folded':'Tissu jacquard Getzner Phantom bleu mer, délicatement plié',
 'Previous':'Précédent','Next':'Suivant','Product photo':'Photo du produit','Photo':'Photo',
-'Mai Deluxe – homepage preview':'Mai Deluxe – aperçu de la page d’accueil'
+'Mai Deluxe – homepage preview':'Mai Deluxe – aperçu de la page d’accueil',
+// responsive design integration
+'Shop the World':'Parcourez le monde','with Mai Deluxe':'avec Mai Deluxe',
+'Exceptional Gold. Luxury Fabrics.':'Or d’exception. Tissus de luxe.','Exclusive Finds. Personally Selected.':'Trouvailles exclusives. Choisies personnellement.',
+'Prices & delivery confirmed':'Prix et livraison confirmés','PERSONAL SOURCING':'SÉLECTION PERSONNELLE',
+'THE MAI DELUXE COMMUNITY':'LA COMMUNAUTÉ MAI DELUXE',
+'Be the first to discover new arrivals, travel updates, exclusive collections, and special offers.':'Soyez les premiers à découvrir les nouveautés, les voyages, les collections exclusives et les offres spéciales.',
+'Join the List →':'Rejoindre la liste →','Gold · Fabrics · Travel · Exclusive Finds':'Or · Tissus · Voyages · Trouvailles exclusives',
+'Orders are by request while the online store is being prepared.':'Les commandes se font sur demande pendant la préparation de la boutique en ligne.',
+'Private List / Contact':'Liste privée / Contact','Why shop Mai Deluxe':'Pourquoi choisir Mai Deluxe',
+'Search is not connected yet.':'La recherche n’est pas encore connectée.','Customer accounts are not connected yet.':'Les comptes clients ne sont pas encore connectés.',
+'The wishlist is not connected yet.':'La liste d’envies n’est pas encore connectée.','The shopping bag opens once the online store is connected.':'Le panier s’ouvrira une fois la boutique en ligne connectée.'
 };
 var RULES=[
  [/^(.+) — open full screen and zoom$/,function(m){return tr(m[1])+' — ouvrir en plein écran et zoomer'}],
