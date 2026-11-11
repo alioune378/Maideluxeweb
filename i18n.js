@@ -69,6 +69,9 @@ var FR={
 'By subscribing you agree to receive marketing emails from Mai Deluxe. Unsubscribe any time.':'En vous inscrivant, vous acceptez de recevoir des e-mails promotionnels de Mai Deluxe. Désinscription possible à tout moment.',
 'Preview only: the Private List is not connected to an email service yet, so nothing was saved.':'Aperçu uniquement'+NB+': la Liste privée n’est pas encore reliée à un service d’e-mail, rien n’a donc été enregistré.',
 'Please enter a valid email address.':'Veuillez saisir une adresse e-mail valide.',
+'Sending your request…':'Envoi de votre demande…','Thank you! Your request has been sent to Mai. She will reply by email soon.':'Merci'+NB+'! Votre demande a été envoyée à Mai. Elle vous répondra bientôt par e-mail.',
+'Sorry, your request could not be sent. Please email hello@mai-deluxe.com.':'Désolé, votre demande n’a pas pu être envoyée. Écrivez-nous à hello@mai-deluxe.com.',
+'Joining…':'Inscription…','Welcome to the Mai Deluxe Private List!':'Bienvenue dans la Liste privée Mai Deluxe'+NB+'!','Sorry, that did not go through. Please try again.':'Désolé, cela n’a pas fonctionné. Veuillez réessayer.',
 // product page
 '● Private draft — only you can see this page. Purchase opens after Mai approves it.':'● Brouillon privé — vous seul voyez cette page. L’achat ouvrira après validation par Mai.',
 'Necklace':'Collier','Earrings':'Boucles d’oreilles','Bracelet':'Bracelet','Ring':'Bague','Full set':'Parure complète',
