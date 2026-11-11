@@ -11,6 +11,7 @@ var FR={
 'Join the Mai Deluxe Private List':'Rejoignez la Liste privée Mai Deluxe',
 'Home':'Accueil','Shop Gold':'Bijoux en or','Shop Fabrics':'Tissus','Special Orders':'Commandes spéciales',
 'New Arrivals':'Nouveautés','Our Story':'Notre histoire','Contact':'Contact',
+'Prefer to write directly?':'Vous préférez écrire directement'+NB+'?','Questions, special orders or appointments':'Questions, commandes spéciales ou rendez-vous',
 // hero
 'Shop the':'Parcourez le','World':'monde','with':'avec',
 'Exceptional Gold. Luxury Fabrics. Exclusive Finds. Personally Selected.':'Or d’exception. Tissus de luxe. Trouvailles exclusives. Choisis personnellement.',
