@@ -69,7 +69,11 @@ var FR={
 'By subscribing you agree to receive marketing emails from Mai Deluxe. Unsubscribe any time.':'En vous inscrivant, vous acceptez de recevoir des e-mails promotionnels de Mai Deluxe. Désinscription possible à tout moment.',
 'Preview only: the Private List is not connected to an email service yet, so nothing was saved.':'Aperçu uniquement'+NB+': la Liste privée n’est pas encore reliée à un service d’e-mail, rien n’a donc été enregistré.',
 'Please enter a valid email address.':'Veuillez saisir une adresse e-mail valide.',
-'Sending your request…':'Envoi de votre demande…','Thank you! Your request has been sent to Mai. She will reply by email soon.':'Merci'+NB+'! Votre demande a été envoyée à Mai. Elle vous répondra bientôt par e-mail.',
+'Sending your request…':'Envoi de votre demande…',
+'Your selected piece':'Votre article sélectionné','Remove':'Retirer','Phone or WhatsApp':'Téléphone ou WhatsApp','Note (optional)':'Note (facultatif)','Size, color, quantity or delivery city':'Taille, couleur, quantité ou ville de livraison',
+'Leave your details and Mai will confirm availability, price and delivery with you. A request is not a confirmed order.':'Laissez vos coordonnées et Mai confirmera avec vous la disponibilité, le prix et la livraison. Une demande n’est pas une commande confirmée.',
+'Please fill in your name, a valid email and your phone number.':'Veuillez indiquer votre nom, une adresse e-mail valide et votre numéro de téléphone.',
+'Thank you! Your request has been sent to Mai. She will contact you soon.':'Merci'+NB+'! Votre demande a été envoyée à Mai. Elle vous contactera bientôt.','Thank you! Your request has been sent to Mai. She will reply by email soon.':'Merci'+NB+'! Votre demande a été envoyée à Mai. Elle vous répondra bientôt par e-mail.',
 'Sorry, your request could not be sent. Please email hello@mai-deluxe.com.':'Désolé, votre demande n’a pas pu être envoyée. Écrivez-nous à hello@mai-deluxe.com.',
 'Joining…':'Inscription…','Welcome to the Mai Deluxe Private List!':'Bienvenue dans la Liste privée Mai Deluxe'+NB+'!','Sorry, that did not go through. Please try again.':'Désolé, cela n’a pas fonctionné. Veuillez réessayer.',
 // product page
