@@ -89,3 +89,64 @@
   sync();
   if (location.hash === '#wishlist' || location.hash === '#search') window.mdExtra(location.hash.slice(1));
 })();
+
+/* Private List — always reachable: floating button on every page + pop-up sign-up (same form, so the welcome email still runs). */
+(function () {
+  'use strict';
+  var d = document, sec = d.getElementById('plist'); if (!sec) return;
+  var inner = sec.querySelector('.mx-newsletter-inner'); if (!inner) return;
+  var joined = false; try { joined = localStorage.getItem('mdJoined') === '1'; } catch (e) {}
+  var st = d.createElement('style');
+  st.textContent =
+    '.md-pl-fab{position:fixed;left:14px;bottom:14px;z-index:90;display:flex;align-items:center;gap:8px;height:52px;padding:0 18px 0 14px;border-radius:26px;background:#080808;color:#fff;border:1px solid #caa45b;font:600 14px/1 var(--mx-sans,system-ui);letter-spacing:.02em;box-shadow:0 8px 24px rgba(0,0,0,.28);cursor:pointer;transition:transform .2s,opacity .3s}' +
+    '.md-pl-fab:hover{transform:translateY(-2px)}.md-pl-fab svg{width:20px;height:20px;fill:#caa45b;flex:none}.md-pl-fab[hidden]{display:none}' +
+    '@media(max-width:700px){.md-pl-fab{height:48px;padding:0 15px 0 12px;font-size:13px;bottom:18px}}' +
+    '.md-pl-ov{position:fixed;inset:0;z-index:200;background:rgba(8,8,8,.72);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;transition:opacity .25s}' +
+    '.md-pl-ov.on{opacity:1}.md-pl-box{position:relative;width:min(560px,100%);max-height:92vh;overflow:auto;margin:0!important;padding:34px 26px 26px!important;border:1px solid #caa45b;border-radius:14px}' +
+    '.md-pl-box .mx-newsletter-inner{grid-template-columns:1fr!important;gap:18px!important;width:auto!important}' +
+    '.md-pl-x{position:absolute;top:10px;right:12px;width:40px;height:40px;border:0;background:none;color:#fff;font-size:26px;line-height:1;cursor:pointer}' +
+    '.md-pl-hold{min-height:120px;display:flex;align-items:center;justify-content:center;color:#d9d4ca;font-size:14px}';
+  d.head.appendChild(st);
+
+  var fab = d.createElement('button');
+  fab.type = 'button'; fab.className = 'md-pl-fab';
+  fab.setAttribute('aria-haspopup', 'dialog');
+  fab.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l4.5 4L12 4l4.5 7L21 7l-2 12H5L3 7z"/></svg><span>Join the Private List</span>';
+  fab.hidden = joined;
+  d.body.appendChild(fab);
+
+  var ov = null, placeholder = null, last = null;
+  function open() {
+    if (ov) return;
+    last = d.activeElement;
+    placeholder = d.createElement('div'); placeholder.className = 'mx-wrap md-pl-hold'; placeholder.textContent = 'Private List';
+    inner.parentNode.insertBefore(placeholder, inner);
+    ov = d.createElement('div'); ov.className = 'md-pl-ov';
+    ov.innerHTML = '<section class="mx mx-newsletter md-pl-box" role="dialog" aria-modal="true" aria-label="Private List"><button class="md-pl-x" type="button" aria-label="Close">×</button></section>';
+    var box = ov.firstChild; box.appendChild(inner);
+    d.body.appendChild(ov); d.body.style.overflow = 'hidden';
+    requestAnimationFrame(function () { ov.classList.add('on'); });
+    box.querySelector('.md-pl-x').addEventListener('click', close);
+    ov.addEventListener('click', function (e) { if (e.target === ov) close(); });
+    var em = d.getElementById('plEmail'); if (em) setTimeout(function () { em.focus(); }, 60);
+  }
+  function close() {
+    if (!ov) return;
+    placeholder.parentNode.replaceChild(inner, placeholder);
+    ov.remove(); ov = null; d.body.style.overflow = '';
+    if (last && last.focus) last.focus();
+  }
+  fab.addEventListener('click', open);
+  d.addEventListener('keydown', function (e) { if (e.key === 'Escape' && ov) close(); });
+  // Every "Join the Private List" link on the site opens the pop-up instead of scrolling to the bottom.
+  d.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href="#plist"]'); if (!a || a.closest('#plist')) return;
+    e.preventDefault(); var mn = d.getElementById('mobileNav'); if (mn && !mn.hidden) { var mb = d.getElementById('menuButton'); mb && mb.click(); }
+    open();
+  });
+  // Hide the button once this visitor has joined.
+  var msg = d.getElementById('plm');
+  if (msg && 'MutationObserver' in window) new MutationObserver(function () {
+    if (/welcome|bienvenue/i.test(msg.textContent)) { try { localStorage.setItem('mdJoined', '1'); } catch (e) {} fab.hidden = true; }
+  }).observe(msg, { childList: true, characterData: true, subtree: true });
+})();

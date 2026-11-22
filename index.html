@@ -920,7 +920,7 @@ var n=Math.min(shown,list.length);cnt.textContent=T('Showing '+n+' of '+list.len
 if(window.mdScanVideos)mdScanVideos()}
 btn.addEventListener('click',function(){shown+=STEP;draw()});
 document.querySelectorAll('.mx-tabs button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.mx-tabs button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');k=b.dataset.k;shown=20;draw()})});
-draw()})()</script><script src="assets/md-extra.js?v=1" defer></script><script src="i18n.js"></script><script>(function(){
+draw()})()</script><script src="assets/md-extra.js?v=2" defer></script><script src="i18n.js"></script><script>(function(){
 /* attach the selected piece to the shopping request */
 var box=document.getElementById('rqItem');if(!box)return;var IT=null;
 try{IT=JSON.parse(sessionStorage.getItem('mdItem')||'null')}catch(e){}
