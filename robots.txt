@@ -1,2 +1,4 @@
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /unsubscribe
+Sitemap: https://mai-deluxe.com/sitemap.xml

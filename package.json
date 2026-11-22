@@ -1,0 +1,8 @@
+{
+  "name": "maideluxeweb",
+  "private": true,
+  "description": "Mai Deluxe — storefront + Private List emails (Netlify Functions)",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
