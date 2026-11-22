@@ -1,19 +1,19 @@
-'use strict';
 /* Runs automatically after every successful production deploy.
    Compares the published site with the previous version and emails the Private List about:
    new products, new prices, a new "Next Trip" travel announcement, new announcement-bar news,
    and any new entry in /updates.json (travel, special finds, news). */
-const L = require('./_lib/list');
-const C = require('./_lib/catalog');
+import * as L from './_lib/list.mjs';
+import * as C from './_lib/catalog.mjs';
 
 const INT = { gold: 'Gold & Jewelry', fabrics: 'Fabrics', travel: 'Travel Updates', special: 'Special Finds' };
 
-exports.handler = async (event) => {
+const R = (status, body) => new Response(body || '', { status });
+export default async (req) => {
   let payload = {};
-  try { payload = JSON.parse(event.body || '{}').payload || {}; } catch (e) {}
-  if (payload.context && payload.context !== 'production') return { statusCode: 200, body: 'not production' };
-  if ((process.env.LIST_AUTOSEND || 'on') === 'off') return { statusCode: 200, body: 'autosend off' };
-  const st = L.store(event);
+  try { payload = (await req.json()).payload || {}; } catch (e) {}
+  if (payload.context && payload.context !== 'production') return R(200, 'not production');
+  if ((process.env.LIST_AUTOSEND || 'on') === 'off') return R(200, 'autosend off');
+  const st = await L.store();
   const base = L.SITE;
   const html = await (await fetch(base + '/?v=' + Date.now())).text();
   let updates = [];
@@ -26,11 +26,11 @@ exports.handler = async (event) => {
   if (!prev) { // first run: remember the current state, announce nothing old
     await st.setJSON('snapshot', next);
     await st.setJSON('sent-updates', (updates || []).map(u => u.id).filter(Boolean));
-    return { statusCode: 200, body: 'baseline saved (' + Object.keys(next.items).length + ' items)' };
+    return R(200, 'baseline saved (' + Object.keys(next.items).length + ' items)');
   }
   const ch = C.diff(prev, next);
   const nothing = !ch.added.length && !ch.priced.length && !ch.travel && !ch.news.length && !freshUpdates.length;
-  if (nothing) { await st.setJSON('snapshot', next); return { statusCode: 200, body: 'no subscriber-facing changes' }; }
+  if (nothing) { await st.setJSON('snapshot', next); return R(200, 'no subscriber-facing changes'); }
 
   const subs = await L.listSubscribers(st);
   const messages = [];
@@ -62,7 +62,8 @@ exports.handler = async (event) => {
     await st.setJSON('sent-updates', sentUpdates.concat(freshUpdates.map(u => u.id)));
   }
   await st.setJSON('log/' + new Date().toISOString(), { added: ch.added.length, priced: ch.priced.length, travel: !!ch.travel, news: ch.news.length, updates: freshUpdates.map(u => u.id), recipients: messages.length, sent: r.sent || 0 });
-  return { statusCode: 200, body: `recipients ${messages.length}, sent ${r.sent || 0}` };
+  console.log(`private-list: update recipients ${messages.length}, sent ${r.sent || 0}`);
+  return R(200, `recipients ${messages.length}, sent ${r.sent || 0}`);
 };
 
 function pick(o, fr) { return o && typeof o === 'object' ? (fr ? o.fr || o.en : o.en || o.fr) : (o || ''); }

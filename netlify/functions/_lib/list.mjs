@@ -1,12 +1,10 @@
-'use strict';
 /* Mai Deluxe Private List — shared helpers (Netlify Blobs store + Resend email). */
-const crypto = require('crypto');
+import crypto from 'node:crypto';
 const SITE = process.env.URL || 'https://mai-deluxe.com';
 
-function store(event) {
-  if (global.__MD_STORE) return global.__MD_STORE;
-  const { getStore, connectLambda } = require('@netlify/blobs');
-  if (event && connectLambda) { try { connectLambda(event); } catch (e) { /* not a lambda-style event */ } }
+async function store() {
+  if (globalThis.__MD_STORE) return globalThis.__MD_STORE;
+  const { getStore } = await import('@netlify/blobs');
   return getStore({ name: 'mai-private-list', consistency: 'strong' });
 }
 const keyFor = email => 'sub/' + crypto.createHash('sha256').update(String(email).trim().toLowerCase()).digest('hex').slice(0, 32);
@@ -57,4 +55,4 @@ async function send(messages) {
   return { sent };
 }
 const unsubUrl = t => `${SITE}/unsubscribe?t=${encodeURIComponent(t)}`;
-module.exports = { store, keyFor, token, esc, listSubscribers, configured, shell, send, unsubUrl, SITE };
+export { store, keyFor, token, esc, listSubscribers, configured, shell, send, unsubUrl, SITE };

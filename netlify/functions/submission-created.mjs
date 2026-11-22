@@ -1,31 +1,31 @@
-'use strict';
 /* Runs automatically on every Netlify Forms submission.
    Private List sign-up → save the subscriber + send the welcome email (EN/FR). */
-const L = require('./_lib/list');
+import * as L from './_lib/list.mjs';
 
-exports.handler = async (event) => {
+const R = (status, body) => new Response(body || '', { status });
+export default async (req) => {
   let payload;
-  try { payload = JSON.parse(event.body).payload; } catch (e) { return { statusCode: 400 }; }
-  if (!payload || payload.form_name !== 'private-list') return { statusCode: 200, body: 'ignored' };
+  try { payload = (await req.json()).payload; } catch (e) { return R(400, 'bad json'); }
+  if (!payload || payload.form_name !== 'private-list') return R(200, 'ignored');
   const d = payload.data || {};
   const email = String(d.email || '').trim().toLowerCase();
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || d.consent !== 'yes' || d['bot-field']) return { statusCode: 200, body: 'skipped' };
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || d.consent !== 'yes' || d['bot-field']) return R(200, 'skipped');
   let interests = d.interests || [];
   if (typeof interests === 'string') { try { interests = JSON.parse(interests); } catch (e) { interests = interests.split(/\s*,\s*/); } }
   const lang = d.lang === 'fr' ? 'fr' : 'en';
 
-  const st = L.store(event);
   const key = L.keyFor(email);
-  const prev = await st.get(key, { type: 'json' });
+  let st = null, prev = null;
+  try { st = await L.store(); prev = await st.get(key, { type: 'json' }); }
+  catch (e) { console.error('private-list: storage unavailable', e && e.message); st = null; }
   const sub = Object.assign({}, prev || {}, {
     email, interests: Array.isArray(interests) ? interests.slice(0, 8) : [], lang,
     status: 'active', token: (prev && prev.token) || L.token(), updated: new Date().toISOString()
   });
   if (!prev) sub.created = sub.updated;
   const alreadyWelcomed = prev && prev.status === 'active' && prev.welcomed;
-  await st.setJSON(key, sub);
-  await st.set('tok/' + sub.token, key);
-  if (alreadyWelcomed) return { statusCode: 200, body: 'updated' };
+  if (st) { try { await st.setJSON(key, sub); await st.set('tok/' + sub.token, key); } catch (e) { console.error('private-list: save failed', e && e.message); } }
+  if (alreadyWelcomed) return R(200, 'updated');
 
   const fr = lang === 'fr';
   const picks = sub.interests.length ? sub.interests.map(i => L.esc(FR_INT[i] && fr ? FR_INT[i] : i)).join(', ') : '';
@@ -44,7 +44,8 @@ exports.handler = async (event) => {
   const html = L.shell({ lang, preheader: heading, heading, bodyHtml, cta: { url: L.SITE + '/#arrivals', label: fr ? 'Découvrir les nouveautés' : 'Discover New Arrivals' }, unsubUrl: unsub });
   const text = (fr ? 'Bienvenue dans la Liste privée Mai Deluxe ! Découvrez les nouveautés : ' : 'Welcome to the Mai Deluxe Private List! Discover new arrivals: ') + L.SITE + '/#arrivals\n\n' + (fr ? 'Se désabonner : ' : 'Unsubscribe: ') + unsub;
   const r = await L.send([{ to: email, subject: fr ? 'Bienvenue dans la Liste privée Mai Deluxe' : 'Welcome to the Mai Deluxe Private List', html, text, unsubUrl: unsub }]);
-  if (r.sent) { sub.welcomed = new Date().toISOString(); await st.setJSON(key, sub); }
-  return { statusCode: 200, body: r.sent ? 'welcomed' : 'saved (email not configured)' };
+  console.log('private-list: welcome', email.replace(/^(.).*@/, '$1***@'), r.sent ? 'sent' : 'not sent');
+  if (r.sent && st) { sub.welcomed = new Date().toISOString(); try { await st.setJSON(key, sub); } catch (e) {} }
+  return R(200, r.sent ? 'welcomed' : 'saved (email not configured)');
 };
 const FR_INT = { 'Gold & Jewelry': 'Or & bijoux', 'Fabrics': 'Tissus', 'Travel Updates': 'Voyages', 'Special Finds': 'Trouvailles exclusives' };

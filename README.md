@@ -3,9 +3,9 @@
 Static storefront (index.html + i18n.js for French) hosted on Netlify, with request forms, search, a device-saved wishlist and the **Private List** email automation.
 
 ## Private List automation (Netlify Functions + Netlify Blobs + Resend)
-- `submission-created` — runs on every Private List sign-up: saves the subscriber (email, interests, language) and sends the welcome email in English or French. Duplicate sign-ups update interests without a second welcome.
-- `deploy-succeeded` — runs after every production deploy: compares the published site with the previous version and emails subscribers (filtered by their interests) about **new products**, **new prices**, a new **Next Trip** announcement, new announcement-bar news, and new entries in `updates.json`. The first run only records a baseline. Nothing is ever sent twice; deploy previews never send.
-- `unsubscribe` — one-click unsubscribe link included in every email (`/unsubscribe?t=…`).
+- `submission-created.mjs` — runs on every Private List sign-up: saves the subscriber (email, interests, language) and sends the welcome email in English or French. Duplicate sign-ups update interests without a second welcome.
+- `deploy-succeeded.mjs` — runs after every production deploy: compares the published site with the previous version and emails subscribers (filtered by their interests) about **new products**, **new prices**, a new **Next Trip** announcement, new announcement-bar news, and new entries in `updates.json`. The first run only records a baseline. Nothing is ever sent twice; deploy previews never send.
+- `unsubscribe.mjs` — one-click unsubscribe link included in every email (`/unsubscribe?t=…`).
 
 ### To announce something that is not a product (travel, special finds, news)
 Add an entry to `updates.json` and deploy:

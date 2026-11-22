@@ -1,4 +1,3 @@
-'use strict';
 /* Reads the published page and extracts what subscribers care about: products (name, price, section, image),
    the "Next Trip" travel announcement and the announcement bar. Pure functions — tested locally. */
 const decode = s => String(s || '').replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&#39;|&rsquo;|’/g, '’').replace(/&quot;/g, '"').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
@@ -44,4 +43,4 @@ function diff(prev, next) {
   const news = next.ann.filter(a => !prev.ann.includes(a));
   return { added, priced, travel, news };
 }
-module.exports = { extract, diff, decode, isPriced };
+export { extract, diff, decode, isPriced };
